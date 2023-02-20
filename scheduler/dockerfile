@@ -12,4 +12,8 @@ RUN go get -d -v ./...
 RUN go install -v ./...
 
 # Specify the command to run when the container starts
-CMD ["go", "run", "./scheduler/scheduler.go"]
+# CMD ["go", "run", "./scheduler/scheduler.go"]
+
+RUN go build -o schedule_runner scheduler/scheduler.go
+
+CMD ["./schedule_runner"]

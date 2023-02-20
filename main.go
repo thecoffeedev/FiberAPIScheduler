@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/gocraft/work"
 	"github.com/gofiber/fiber/v2"
@@ -13,7 +14,7 @@ var redisPool = &redis.Pool{
 	MaxIdle:   5,
 	Wait:      true,
 	Dial: func() (redis.Conn, error) {
-		return redis.Dial("tcp", ":6379")
+		return redis.Dial("tcp", os.Getenv("REDIS_HOST") + ":6379", redis.DialPassword(os.Getenv("REDIS_PASSWORD")))
 	},
 }
 
