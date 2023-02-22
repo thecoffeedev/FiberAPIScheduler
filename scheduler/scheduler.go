@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
-	"strings"
 	"syscall"
 
 	"github.com/go-resty/resty/v2"
@@ -48,7 +47,7 @@ func (c *Context) CallAPI(job *work.Job) error {
 	fmt.Println(Type)
 	if Type == "POST" {
 		client.SetHeader("Content-Type", "application/json")
-		Payload = strings.ReplaceAll(Payload, "'", "\"")
+		// Payload = strings.ReplaceAll(Payload, "'", "\"")
 		fmt.Println(Payload)
 		resp, err := client.R().SetBody(Payload).Post(URL)
 		fmt.Println(resp)
